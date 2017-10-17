@@ -199,7 +199,7 @@ mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) {
   // Arduino module is assumed to always be needed
   RClass *arduinoModule = mrb_define_module(mrb, "Arduino");
 
-  #ifdef MRUBY_ARDUINO_PINMODE
+  #ifdef MRUBY_ARDUINO_PINMODE_FUNC
     mrb_define_module_function(mrb, arduinoModule, "pinMode", mrb_arduino_pinMode, MRB_ARGS_REQ(2));
   #endif
 
@@ -271,18 +271,31 @@ mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) {
     mrb_define_module_function(mrb, arduinoModule, "noInterrupts", mrb_arduino_noInterrupts, MRB_ARGS_NONE());
   #endif
 
-  #ifdef MRUBY_ARDUINO_DIGITAL_IO_CONSTANTS
+  #if defined(MRUBY_ARDUINO_DIGITAL_HIGH) || defined(MRUBY_ARDUINO_DIGITAL_LOW)
     Serial.println("Adding Digital IO Constants");
-    mrb_define_const(mrb, arduinoModule, "HIGH", mrb_fixnum_value(HIGH));
-    mrb_define_const(mrb, arduinoModule, "LOW", mrb_fixnum_value(LOW));
-  #endif /*MRUBY_ARDUINO_DIGITAL_IO_CONSTANTS*/
+    #if defined(MRUBY_ARDUINO_DIGITAL_HIGH)
+      mrb_define_const(mrb, arduinoModule, "HIGH", mrb_fixnum_value(HIGH));
+    #endif
 
-  #ifdef MRUBY_ARDUINO_PINMODE_CONSTANTS
+    #if defined(MRUBY_ARDUINO_DIGITAL_LOW)
+      mrb_define_const(mrb, arduinoModule, "LOW", mrb_fixnum_value(LOW));
+    #endif
+  #endif
+
+  #if defined(MRUBY_ARDUINO_PINMODE_INPUT) || defined(MRUBY_ARDUINO_PINMODE_OUTPUT) || defined(MRUBY_ARDUINO_PINMODE_INPUT_PULLUP)
     Serial.println("Adding Pinmode Constants");
-    mrb_define_const(mrb, arduinoModule, "INPUT", mrb_fixnum_value(INPUT));
-    mrb_define_const(mrb, arduinoModule, "OUTPUT", mrb_fixnum_value(OUTPUT));
-    mrb_define_const(mrb, arduinoModule, "INPUT_PULLUP", mrb_fixnum_value(INPUT_PULLUP));
-  #endif /*MRUBY_ARDUINO_PINMODE_CONSTANTS*/
+    #ifdef MRUBY_ARDUINO_PINMODE_INPUT
+      mrb_define_const(mrb, arduinoModule, "INPUT", mrb_fixnum_value(INPUT));
+    #endif
+
+    #ifdef MRUBY_ARDUINO_PINMODE_OUTPUT
+      mrb_define_const(mrb, arduinoModule, "OUTPUT", mrb_fixnum_value(OUTPUT));
+    #endif
+
+    #ifdef MRUBY_ARDUINO_PINMODE_INPUT_PULLUP
+      mrb_define_const(mrb, arduinoModule, "INPUT_PULLUP", mrb_fixnum_value(INPUT_PULLUP));
+    #endif
+  #endif
 
   #ifdef MRUBY_ARDUINO_SHIFT_CONSTANTS
     Serial.println("Adding Shift Register Constants");
