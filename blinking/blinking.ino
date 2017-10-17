@@ -99,33 +99,33 @@ void setup() {
   // mrb_define_class_method(mrb, sillyClass, "show_memory_usage", show_memory_usage_in_ruby, MRB_ARGS_NONE());
 
   Serial.println("Setup complete");
-	delay(1000);
+	delay(250);
 
 	Serial.println("set GC");
-  delay(1000);
+  delay(250);
 	ai = mrb_gc_arena_save(mrb);
-  delay(1000);
+  delay(250);
 
   show_memory_usage();
 }
 
 void loop() {
 	Serial.println("loop");
-  delay(1000);
+  delay(250);
 
 	Serial.println("Executing Ruby code from C!");
-  delay(1000);
+  delay(250);
 	mrb_load_irep(mrb, bytecode);
-  delay(1000);
+  delay(250);
 	Serial.println("close");
-  delay(1000);
+  delay(250);
 	mrb_close(mrb);
-  delay(1000);
+  delay(250);
 
 	Serial.println("Restoring GC");
 	mrb_gc_arena_restore(mrb,ai);
 
 	Serial.println("delay");
-  delay(1000);
+  delay(250);
 
 }

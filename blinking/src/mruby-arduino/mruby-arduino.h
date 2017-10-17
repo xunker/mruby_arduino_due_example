@@ -1,5 +1,7 @@
 #define ARDUINO_ARCH_SAM
 
+#include "config.h"
+
 #include "mruby.h"
 #include "mruby/class.h"
 #include "mruby/string.h"

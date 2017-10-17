@@ -173,42 +173,121 @@ mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) {
   // Serial.println("mruby_arduino_init_chipKIT_or_Due");
   // Serial.end();
 
-  Serial.println("Adding Serial");
-  RClass *serialClass = mrb_define_class(mrb, "Serial", mrb->object_class);
-  mrb_define_class_method(mrb, serialClass, "available", mrb_serial_available, MRB_ARGS_NONE());
-  mrb_define_class_method(mrb, serialClass, "begin",mrb_serial_begin, MRB_ARGS_REQ(1));
-  mrb_define_class_method(mrb, serialClass, "println", mrb_serial_println, MRB_ARGS_REQ(1));
-  mrb_define_class_method(mrb, serialClass, "print", mrb_serial_print, MRB_ARGS_REQ(1));
+  Serial.println("Poop");
+  #ifdef MRUBY_ARDUINO_SERIAL_CLASS
+    Serial.println("Adding Serial");
+    RClass *serialClass = mrb_define_class(mrb, "Serial", mrb->object_class);
+  #endif
 
-  Serial.println("Adding Arduino module");
+  #ifdef MRUBY_ARDUINO_SERIAL_AVAILABLE
+    mrb_define_class_method(mrb, serialClass, "available", mrb_serial_available, MRB_ARGS_NONE());
+  #endif
+
+  #ifdef MRUBY_ARDUINO_SERIAL_BEGIN
+    mrb_define_class_method(mrb, serialClass, "begin",mrb_serial_begin, MRB_ARGS_REQ(1));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_SERIAL_PRINTLN
+    mrb_define_class_method(mrb, serialClass, "println", mrb_serial_println, MRB_ARGS_REQ(1));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_SERIAL_PRINT
+    mrb_define_class_method(mrb, serialClass, "print", mrb_serial_print, MRB_ARGS_REQ(1));
+  #endif
+
+  // Serial.println("Adding Arduino module");
+  // Arduino module is assumed to always be needed
   RClass *arduinoModule = mrb_define_module(mrb, "Arduino");
-  mrb_define_module_function(mrb, arduinoModule, "pinMode", mrb_arduino_pinMode, MRB_ARGS_REQ(2));
-  mrb_define_module_function(mrb, arduinoModule, "digitalWrite", mrb_arduino_digitalWrite, MRB_ARGS_REQ(2));
-  mrb_define_module_function(mrb, arduinoModule, "digitalRead", mrb_arduino_digitalRead, MRB_ARGS_REQ(1));
-  mrb_define_module_function(mrb, arduinoModule, "analogReference", mrb_arduino_analogReference, MRB_ARGS_REQ(1));
-  mrb_define_module_function(mrb, arduinoModule, "analogWrite", mrb_arduino_analogWrite, MRB_ARGS_REQ(2));
-  mrb_define_module_function(mrb, arduinoModule, "analogRead", mrb_arduino_analogRead, MRB_ARGS_REQ(1));
-  mrb_define_module_function(mrb, arduinoModule, "shiftOut", mrb_arduino_shiftOut, MRB_ARGS_REQ(4));
-  mrb_define_module_function(mrb, arduinoModule, "shiftIn", mrb_arduino_shiftOut, MRB_ARGS_REQ(3));
-  mrb_define_module_function(mrb, arduinoModule, "pulseIn", mrb_arduino_pulseIn, MRB_ARGS_REQ(2) | MRB_ARGS_OPT(1));
-  mrb_define_module_function(mrb, arduinoModule, "millis", mrb_arduino_millis, MRB_ARGS_NONE());
-  mrb_define_module_function(mrb, arduinoModule, "micros", mrb_arduino_micros, MRB_ARGS_NONE());
-  mrb_define_module_function(mrb, arduinoModule, "delay", mrb_arduino_delay, MRB_ARGS_REQ(1));
-  mrb_define_module_function(mrb, arduinoModule, "delayMicroseconds", mrb_arduino_delayMicroseconds, MRB_ARGS_REQ(1));
-  mrb_define_module_function(mrb, arduinoModule, "map", mrb_arduino_map, MRB_ARGS_REQ(5));
-  mrb_define_module_function(mrb, arduinoModule, "randomSeed", mrb_arduino_randomSeed, MRB_ARGS_REQ(1));
-  mrb_define_module_function(mrb, arduinoModule, "random", mrb_arduino_random, MRB_ARGS_REQ(1) | MRB_ARGS_OPT(1));
-  mrb_define_module_function(mrb, arduinoModule, "interrupts", mrb_arduino_interrupts, MRB_ARGS_NONE());
-  mrb_define_module_function(mrb, arduinoModule, "noInterrupts", mrb_arduino_noInterrupts, MRB_ARGS_NONE());
 
-  Serial.println("Adding Constants");
-  mrb_define_const(mrb, arduinoModule, "HIGH", mrb_fixnum_value(HIGH));
-  mrb_define_const(mrb, arduinoModule, "LOW", mrb_fixnum_value(LOW));
-  mrb_define_const(mrb, arduinoModule, "INPUT", mrb_fixnum_value(INPUT));
-  mrb_define_const(mrb, arduinoModule, "OUTPUT", mrb_fixnum_value(OUTPUT));
-  mrb_define_const(mrb, arduinoModule, "INPUT_PULLUP", mrb_fixnum_value(INPUT_PULLUP));
+  #ifdef MRUBY_ARDUINO_PINMODE
+    mrb_define_module_function(mrb, arduinoModule, "pinMode", mrb_arduino_pinMode, MRB_ARGS_REQ(2));
+  #endif
 
-  mrb_define_const(mrb, arduinoModule, "MSBFIRST", mrb_fixnum_value(MSBFIRST));
-  mrb_define_const(mrb, arduinoModule, "LSBFIRST", mrb_fixnum_value(LSBFIRST));
+  #ifdef MRUBY_ARDUINO_DIGITAL_WRITE
+    mrb_define_module_function(mrb, arduinoModule, "digitalWrite", mrb_arduino_digitalWrite, MRB_ARGS_REQ(2));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_DIGITAL_READ
+    mrb_define_module_function(mrb, arduinoModule, "digitalRead", mrb_arduino_digitalRead, MRB_ARGS_REQ(1));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_ANALOG_REFERENCE
+    mrb_define_module_function(mrb, arduinoModule, "analogReference", mrb_arduino_analogReference, MRB_ARGS_REQ(1));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_ANALOG_WRITE
+    mrb_define_module_function(mrb, arduinoModule, "analogWrite", mrb_arduino_analogWrite, MRB_ARGS_REQ(2));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_ANALOG_READ
+    mrb_define_module_function(mrb, arduinoModule, "analogRead", mrb_arduino_analogRead, MRB_ARGS_REQ(1));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_SHIFT_OUT
+    mrb_define_module_function(mrb, arduinoModule, "shiftOut", mrb_arduino_shiftOut, MRB_ARGS_REQ(4));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_SHIFT_IN
+    mrb_define_module_function(mrb, arduinoModule, "shiftIn", mrb_arduino_shiftOut, MRB_ARGS_REQ(3));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_PULSE_IN
+    mrb_define_module_function(mrb, arduinoModule, "pulseIn", mrb_arduino_pulseIn, MRB_ARGS_REQ(2) | MRB_ARGS_OPT(1));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_MILLIS
+    mrb_define_module_function(mrb, arduinoModule, "millis", mrb_arduino_millis, MRB_ARGS_NONE());
+  #endif
+
+  #ifdef MRUBY_ARDUINO_MICROS
+    mrb_define_module_function(mrb, arduinoModule, "micros", mrb_arduino_micros, MRB_ARGS_NONE());
+  #endif
+
+  #ifdef MRUBY_ARDUINO_DELAY
+    mrb_define_module_function(mrb, arduinoModule, "delay", mrb_arduino_delay, MRB_ARGS_REQ(1));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_DELAY_MICROSECONDS
+    mrb_define_module_function(mrb, arduinoModule, "delayMicroseconds", mrb_arduino_delayMicroseconds, MRB_ARGS_REQ(1));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_MAP
+    mrb_define_module_function(mrb, arduinoModule, "map", mrb_arduino_map, MRB_ARGS_REQ(5));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_RANDOM_SEED
+    mrb_define_module_function(mrb, arduinoModule, "randomSeed", mrb_arduino_randomSeed, MRB_ARGS_REQ(1));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_RANDOM
+    mrb_define_module_function(mrb, arduinoModule, "random", mrb_arduino_random, MRB_ARGS_REQ(1) | MRB_ARGS_OPT(1));
+  #endif
+
+  #ifdef MRUBY_ARDUINO_INTERRUPTS
+    mrb_define_module_function(mrb, arduinoModule, "interrupts", mrb_arduino_interrupts, MRB_ARGS_NONE());
+  #endif
+
+  #ifdef MRUBY_ARDUINO_NO_INTERRUPTS
+    mrb_define_module_function(mrb, arduinoModule, "noInterrupts", mrb_arduino_noInterrupts, MRB_ARGS_NONE());
+  #endif
+
+  #ifdef MRUBY_ARDUINO_DIGITAL_IO_CONSTANTS
+    Serial.println("Adding Digital IO Constants");
+    mrb_define_const(mrb, arduinoModule, "HIGH", mrb_fixnum_value(HIGH));
+    mrb_define_const(mrb, arduinoModule, "LOW", mrb_fixnum_value(LOW));
+  #endif /*MRUBY_ARDUINO_DIGITAL_IO_CONSTANTS*/
+
+  #ifdef MRUBY_ARDUINO_PINMODE_CONSTANTS
+    Serial.println("Adding Pinmode Constants");
+    mrb_define_const(mrb, arduinoModule, "INPUT", mrb_fixnum_value(INPUT));
+    mrb_define_const(mrb, arduinoModule, "OUTPUT", mrb_fixnum_value(OUTPUT));
+    mrb_define_const(mrb, arduinoModule, "INPUT_PULLUP", mrb_fixnum_value(INPUT_PULLUP));
+  #endif /*MRUBY_ARDUINO_PINMODE_CONSTANTS*/
+
+  #ifdef MRUBY_ARDUINO_SHIFT_CONSTANTS
+    Serial.println("Adding Shift Register Constants");
+    mrb_define_const(mrb, arduinoModule, "MSBFIRST", mrb_fixnum_value(MSBFIRST));
+    mrb_define_const(mrb, arduinoModule, "LSBFIRST", mrb_fixnum_value(LSBFIRST));
+  #endif /*MRUBY_ARDUINO_SHIFT_CONSTANTS*/
 
 }

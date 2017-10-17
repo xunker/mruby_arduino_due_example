@@ -1,6 +1,11 @@
 # # simple test
 # 1 + 1
 
+# # simple test, loop
+# loop do
+#   1 + 1
+# end
+
 # # Using only custom-defined methods
 # loop do
 #   Silly.woot
