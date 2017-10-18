@@ -9,4 +9,4 @@
 
 // extern "C"
 void
-mruby_arduino_init_chipKIT_or_Due(mrb_state *mrb);
+add_arduino_to_mruby(mrb_state *mrb);

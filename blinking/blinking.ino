@@ -94,7 +94,7 @@ void setup() {
 
 	/* This adds the Arduino.* and Serial.* methods to mruby, but ONLY THOSE that
 	   have been enabled in config.h. */
-  mruby_arduino_init_chipKIT_or_Due(mrb);
+  add_arduino_to_mruby(mrb);
 
 	/* Uncomment the two lines below to allow Info.show_memory_usage to be
 	   used in ruby. */

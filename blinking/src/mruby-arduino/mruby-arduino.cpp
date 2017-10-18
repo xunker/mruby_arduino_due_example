@@ -6,7 +6,7 @@
 		https://github.com/kyab/mruby-arduino/
 
     To use this, #include it in your arduino sketch and then call
-    `mruby_arduino_init_chipKIT_or_Due()` in setup().
+    `add_arduino_to_mruby()` in setup().
 
     REMEMBER: Functions can be selectively enabled for memory usage reasons.
     By default, NO function are enabled. You MUST edit config.h to enable
@@ -179,7 +179,7 @@ mrb_value mrb_arduino_noInterrupts(mrb_state *mrb, mrb_value self){
 
 // extern "C"
 void
-mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) {
+mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) { // formerly named `mruby_arduino_init_chipKIT_or_Due`
 
   #ifdef MRUBY_ARDUINO_SERIAL_CLASS
     RClass *serialClass = mrb_define_class(mrb, "Serial", mrb->object_class);
