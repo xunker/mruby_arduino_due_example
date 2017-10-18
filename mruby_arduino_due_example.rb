@@ -69,8 +69,8 @@
 # #  MRUBY_ARDUINO_SERIAL_PRINT
 # #  MRUBY_ARDUINO_SERIAL_PRINTLN
 # #  MRUBY_ARDUINO_DELAY
+# Arduino.pinMode(13, Arduino::OUTPUT)
 # Arduino.pinMode(2, Arduino::INPUT_PULLUP)
-#
 # @delay_time = 500
 # def get_delay_time
 #   delay_time = case Arduino.digitalRead(2)

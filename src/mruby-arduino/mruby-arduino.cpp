@@ -179,7 +179,7 @@ mrb_value mrb_arduino_noInterrupts(mrb_state *mrb, mrb_value self){
 
 // extern "C"
 void
-mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) { // formerly named `mruby_arduino_init_chipKIT_or_Due`
+add_arduino_to_mruby(mrb_state* mrb) { // formerly named `mruby_arduino_init_chipKIT_or_Due`
 
   #ifdef MRUBY_ARDUINO_SERIAL_CLASS
     RClass *serialClass = mrb_define_class(mrb, "Serial", mrb->object_class);

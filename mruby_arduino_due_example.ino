@@ -12,7 +12,7 @@ mrb_state *mrb;
 int ai;
 size_t total_allocated;
 
-#include "blinking.h"
+#include "mruby_arduino_due_example.h"
 
 /* Custom allocator to check heap shortage. Originally created by kyab, copied
    from github.com/kyab/mruby-arduino/blob/master/samples/blink/blink.pde */
