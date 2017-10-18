@@ -158,9 +158,8 @@
 # ----------
 
 
-# # Calling a C-function defined in blinking.ino. Requires the function
-# # `show_memory_usage_in_ruby` be uncommented as well as two lines in setup()
-# # begining with `RClass *infoClass...`.
+# # Calling a C-function defined in blinking.ino. Requires the two lines
+# # in setup() begining with `RClass *infoClass...` to be uncommented.
 # # Does NOT require anything in config.h to be enabled, but DOES require the
 # # Arduino Due to be connected to your computer via the PROGRAMMING port (not
 # # the "native" port).
