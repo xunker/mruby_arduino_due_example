@@ -5,44 +5,44 @@
   // #define MRUBY_ARDUINO_ALL // Enables _ALL_ arduino functions. Not recommended.
 
   // #define MRUBY_ARDUINO_DIGITAL_IO // digitalRead, digitalWrite, pinMode, and HIGH/LOW constants
-  //  #define MRUBY_ARDUINO_DIGITAL_READ // only digitalRead
-  //  #define MRUBY_ARDUINO_DIGITAL_WRITE // only digitalWrite
-  //  #define MRUBY_ARDUINO_DIGITAL_IO_CONSTANTS // only HIGH/LOW constants
-  //  #define MRUBY_ARDUINO_DIGITAL_HIGH // only HIGH constant
-  //  #define MRUBY_ARDUINO_DIGITAL_LOW // only LOW constant
+  // #define MRUBY_ARDUINO_DIGITAL_READ // only digitalRead
+  // #define MRUBY_ARDUINO_DIGITAL_WRITE // only digitalWrite
+  // #define MRUBY_ARDUINO_DIGITAL_IO_CONSTANTS // only HIGH/LOW constants
+  // #define MRUBY_ARDUINO_DIGITAL_HIGH // only HIGH constant
+  // #define MRUBY_ARDUINO_DIGITAL_LOW // only LOW constant
 
-  //  #define MRUBY_ARDUINO_ANALOG_IO // analogRead, analogWrite, pinMode. Does NOT enable analogReference
-  //  #define MRUBY_ARDUINO_ANALOG_READ // only analogRead
-  //  #define MRUBY_ARDUINO_ANALOG_WRITE // only analogWrite
-  //  #define MRUBY_ARDUINO_ANALOG_REFERENCE // only analogReference
+  // #define MRUBY_ARDUINO_ANALOG_IO // analogRead, analogWrite, pinMode. Does NOT enable analogReference
+  // #define MRUBY_ARDUINO_ANALOG_READ // only analogRead
+  // #define MRUBY_ARDUINO_ANALOG_WRITE // only analogWrite
+  // #define MRUBY_ARDUINO_ANALOG_REFERENCE // only analogReference
 
   // #define MRUBY_ARDUINO_PINMODE // pinMode and INPUT/OUTPUT/INPUT_PULLUP constants
   // #define MRUBY_ARDUINO_PINMODE_FUNC // pinMode only
-  //  #define MRUBY_ARDUINO_PINMODE_CONSTANTS // only INPUT/OUTPUT/INPUT_PULLUP constants
+  // #define MRUBY_ARDUINO_PINMODE_CONSTANTS // only INPUT/OUTPUT/INPUT_PULLUP constants
   // #define MRUBY_ARDUINO_PINMODE_INPUT // only INPUT constant
   // #define MRUBY_ARDUINO_PINMODE_OUTPUT // only OUTPUT constant
   // #define MRUBY_ARDUINO_PINMODE_INPUT_PULLUP // only INPUT_PULLUP constant
 
-  //  #define MRUBY_ARDUINO_SERIAL // Serial.begin, Serial.available, Serial.print, Serial.println
-  //  #define MRUBY_ARDUINO_SERIAL_BEGIN // only Serial.begin
-  //  #define MRUBY_ARDUINO_SERIAL_AVAILABLE // only Serial.available
+  // #define MRUBY_ARDUINO_SERIAL // Serial.begin, Serial.available, Serial.print, Serial.println
+  // #define MRUBY_ARDUINO_SERIAL_BEGIN // only Serial.begin
+  // #define MRUBY_ARDUINO_SERIAL_AVAILABLE // only Serial.available
   // #define MRUBY_ARDUINO_SERIAL_PRINT // only Serial.print
   // #define MRUBY_ARDUINO_SERIAL_PRINTLN // only Serial.println
 
-  //  #define MRUBY_ARDUINO_SHIFT // shiftIn, shiftOut, and MSBFIRST/LSBFIRST constants
-  //  #define MRUBY_ARDUINO_SHIFT_IN // only shiftIn
-  //  #define MRUBY_ARDUINO_SHIFT_OUT // only shiftOut
-  //  #define MRUBY_ARDUINO_SHIFT_CONSTANTS // only MSBFIRST/LSBFIRST constants
+  // #define MRUBY_ARDUINO_SHIFT // shiftIn, shiftOut, and MSBFIRST/LSBFIRST constants
+  // #define MRUBY_ARDUINO_SHIFT_IN // only shiftIn
+  // #define MRUBY_ARDUINO_SHIFT_OUT // only shiftOut
+  // #define MRUBY_ARDUINO_SHIFT_CONSTANTS // only MSBFIRST/LSBFIRST constants
 
-  //  #define MRUBY_ARDUINO_INTERRUPTS // interrupts, noInterrupts
+  // #define MRUBY_ARDUINO_INTERRUPTS // interrupts, noInterrupts
 
-  //  #define MRUBY_ARDUINO_PULSE_IN // pulseIn
+  // #define MRUBY_ARDUINO_PULSE_IN // pulseIn
 
-  //  #define MRUBY_ARDUINO_MILLIS // millis
-  //  #define MRUBY_ARDUINO_MICROS // micros
+  // #define MRUBY_ARDUINO_MILLIS // millis
+  // #define MRUBY_ARDUINO_MICROS // micros
 
   // #define MRUBY_ARDUINO_DELAY // delay
-  //  #define MRUBY_ARDUINO_DELAY_MICROSECONDS // delayMicroseconds
+  // #define MRUBY_ARDUINO_DELAY_MICROSECONDS // delayMicroseconds
 
   // #define MRUBY_ARDUINO_MAP // map
 
