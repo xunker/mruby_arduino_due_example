@@ -1,3 +1,18 @@
+/*
+		Library to bridge Arduino function in to mruby running on the Arudino Due
+    and using mruby 1.3.0 and Arduino IDE v1.8.3. October 2017.
+		Compiled by Matthew Nielsen (xunker@pyxidis.org), based on extensive work
+		by kyab:
+		https://github.com/kyab/mruby-arduino/
+
+    To use this, #include it in your arduino sketch and then call
+    `mruby_arduino_init_chipKIT_or_Due()` in setup().
+
+    REMEMBER: Functions can be selectively enabled for memory usage reasons.
+    By default, NO function are enabled. You MUST edit config.h to enable
+    functions.
+*/
+
 #include "mruby-arduino.h"
 
 #include "mruby.h"
