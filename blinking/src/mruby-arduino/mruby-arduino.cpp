@@ -169,13 +169,8 @@ mrb_value mrb_arduino_noInterrupts(mrb_state *mrb, mrb_value self){
 // extern "C"
 void
 mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) {
-  // Serial.begin(9600);
-  // Serial.println("mruby_arduino_init_chipKIT_or_Due");
-  // Serial.end();
 
-  Serial.println("Poop");
   #ifdef MRUBY_ARDUINO_SERIAL_CLASS
-    Serial.println("Adding Serial");
     RClass *serialClass = mrb_define_class(mrb, "Serial", mrb->object_class);
   #endif
 
@@ -195,8 +190,6 @@ mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) {
     mrb_define_class_method(mrb, serialClass, "print", mrb_serial_print, MRB_ARGS_REQ(1));
   #endif
 
-  // Serial.println("Adding Arduino module");
-  // Arduino module is assumed to always be needed
   RClass *arduinoModule = mrb_define_module(mrb, "Arduino");
 
   #ifdef MRUBY_ARDUINO_PINMODE_FUNC
@@ -272,7 +265,6 @@ mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) {
   #endif
 
   #if defined(MRUBY_ARDUINO_DIGITAL_HIGH) || defined(MRUBY_ARDUINO_DIGITAL_LOW)
-    Serial.println("Adding Digital IO Constants");
     #if defined(MRUBY_ARDUINO_DIGITAL_HIGH)
       mrb_define_const(mrb, arduinoModule, "HIGH", mrb_fixnum_value(HIGH));
     #endif
@@ -283,7 +275,6 @@ mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) {
   #endif
 
   #if defined(MRUBY_ARDUINO_PINMODE_INPUT) || defined(MRUBY_ARDUINO_PINMODE_OUTPUT) || defined(MRUBY_ARDUINO_PINMODE_INPUT_PULLUP)
-    Serial.println("Adding Pinmode Constants");
     #ifdef MRUBY_ARDUINO_PINMODE_INPUT
       mrb_define_const(mrb, arduinoModule, "INPUT", mrb_fixnum_value(INPUT));
     #endif
@@ -298,7 +289,6 @@ mruby_arduino_init_chipKIT_or_Due(mrb_state* mrb) {
   #endif
 
   #ifdef MRUBY_ARDUINO_SHIFT_CONSTANTS
-    Serial.println("Adding Shift Register Constants");
     mrb_define_const(mrb, arduinoModule, "MSBFIRST", mrb_fixnum_value(MSBFIRST));
     mrb_define_const(mrb, arduinoModule, "LSBFIRST", mrb_fixnum_value(LSBFIRST));
   #endif /*MRUBY_ARDUINO_SHIFT_CONSTANTS*/
