@@ -1,6 +1,6 @@
-# # Simple test, will do this operation and then exit, there will
-# # be no output.
-# 1 + 1
+# Simple test, will do this operation and then exit, there will
+# be no output.
+1 + 1
 
 
 # ----------
@@ -107,37 +107,37 @@
 # ----------
 
 
-# Fading the LED on and off using analogWrite.
-# Needs:
-#  MRUBY_ARDUINO_ANALOG_WRITE
-#  MRUBY_ARDUINO_SERIAL_PRINT
-#  MRUBY_ARDUINO_SERIAL_PRINTLN
-#  MRUBY_ARDUINO_DELAY
-dot_counter = 0
-led_state = 0
-led_direction = 1
-loop do
-  dot_counter += 1
-  if dot_counter % 100 == 0
-    Serial.print('.')
-    if dot_counter > 5000
-      Serial.println('')
-      dot_counter = 0
-    end
-  end
-
-  led_state += led_direction
-  if led_state >= 255
-    led_direction = -1
-  end
-
-  if led_state <= 0
-    led_direction = +1
-  end
-
-  Arduino.analogWrite(13, led_state)
-  Arduino.delay(2)
-end
+# # Fading the LED on and off using analogWrite.
+# # Needs:
+# #  MRUBY_ARDUINO_ANALOG_WRITE
+# #  MRUBY_ARDUINO_SERIAL_PRINT
+# #  MRUBY_ARDUINO_SERIAL_PRINTLN
+# #  MRUBY_ARDUINO_DELAY
+# dot_counter = 0
+# led_state = 0
+# led_direction = 1
+# loop do
+#   dot_counter += 1
+#   if dot_counter % 100 == 0
+#     Serial.print('.')
+#     if dot_counter > 5000
+#       Serial.println('')
+#       dot_counter = 0
+#     end
+#   end
+#
+#   led_state += led_direction
+#   if led_state >= 255
+#     led_direction = -1
+#   end
+#
+#   if led_state <= 0
+#     led_direction = +1
+#   end
+#
+#   Arduino.analogWrite(13, led_state)
+#   Arduino.delay(2)
+# end
 
 
 # ----------

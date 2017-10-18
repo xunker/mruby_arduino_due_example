@@ -4,7 +4,7 @@
 
   // #define MRUBY_ARDUINO_ALL // Enables _ALL_ arduino functions. Not recommended.
 
-  #define MRUBY_ARDUINO_DIGITAL_IO // digitalRead, digitalWrite, pinMode, and HIGH/LOW constants
+  // #define MRUBY_ARDUINO_DIGITAL_IO // digitalRead, digitalWrite, pinMode, and HIGH/LOW constants
   //  #define MRUBY_ARDUINO_DIGITAL_READ // only digitalRead
   //  #define MRUBY_ARDUINO_DIGITAL_WRITE // only digitalWrite
   //  #define MRUBY_ARDUINO_DIGITAL_IO_CONSTANTS // only HIGH/LOW constants
@@ -26,8 +26,8 @@
   //  #define MRUBY_ARDUINO_SERIAL // Serial.begin, Serial.available, Serial.print, Serial.println
   //  #define MRUBY_ARDUINO_SERIAL_BEGIN // only Serial.begin
   //  #define MRUBY_ARDUINO_SERIAL_AVAILABLE // only Serial.available
-  #define MRUBY_ARDUINO_SERIAL_PRINT // only Serial.print
-  #define MRUBY_ARDUINO_SERIAL_PRINTLN // only Serial.println
+  // #define MRUBY_ARDUINO_SERIAL_PRINT // only Serial.print
+  // #define MRUBY_ARDUINO_SERIAL_PRINTLN // only Serial.println
 
   //  #define MRUBY_ARDUINO_SHIFT // shiftIn, shiftOut, and MSBFIRST/LSBFIRST constants
   //  #define MRUBY_ARDUINO_SHIFT_IN // only shiftIn
@@ -41,7 +41,7 @@
   //  #define MRUBY_ARDUINO_MILLIS // millis
   //  #define MRUBY_ARDUINO_MICROS // micros
 
-  #define MRUBY_ARDUINO_DELAY // delay
+  // #define MRUBY_ARDUINO_DELAY // delay
   //  #define MRUBY_ARDUINO_DELAY_MICROSECONDS // delayMicroseconds
 
   // #define MRUBY_ARDUINO_MAP // map
