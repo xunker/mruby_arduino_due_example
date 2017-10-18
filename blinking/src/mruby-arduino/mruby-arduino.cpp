@@ -33,16 +33,6 @@ mrb_value mrb_serial_begin(mrb_state *mrb, mrb_value self){
   return mrb_nil_value();
 }
 
-mrb_value mrb_serial_println(mrb_state *mrb, mrb_value self){
-  mrb_value s;
-  mrb_get_args(mrb,"S", &s);
-  for (int i = 0; i < RSTRING_LEN(s); i++){
-    Serial.print( RSTRING_PTR(s)[i] );
-  }
-  Serial.println("");
-  return mrb_nil_value();
-}
-
 mrb_value mrb_serial_print(mrb_state *mrb, mrb_value self){
   mrb_value s;
   mrb_get_args(mrb,"S", &s);
@@ -50,6 +40,12 @@ mrb_value mrb_serial_print(mrb_state *mrb, mrb_value self){
     Serial.print( RSTRING_PTR(s)[i] );
   }
   Serial.print("");
+  return mrb_nil_value();
+}
+
+mrb_value mrb_serial_println(mrb_state *mrb, mrb_value self){
+  mrb_serial_print(mrb, self);
+  Serial.println("");
   return mrb_nil_value();
 }
 
