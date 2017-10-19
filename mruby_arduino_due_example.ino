@@ -112,7 +112,10 @@ void loop() {
 
 	Serial.println("Executing Ruby code from C!");
   delay(250);
+
+	int ai = mrb_gc_arena_save(mrb);
 	mrb_load_irep(mrb, bytecode);
+	mrb_gc_arena_restore(mrb, ai);
   delay(250);
 
 	/* If there was an error executing mruby, print it out.
