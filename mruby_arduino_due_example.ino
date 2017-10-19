@@ -9,7 +9,6 @@
 #include "mruby/irep.h"
 
 mrb_state *mrb;
-int ai;
 size_t total_allocated;
 
 #include "mruby_arduino_due_example.h"
@@ -104,11 +103,6 @@ void setup() {
   Serial.println("Setup complete");
 	delay(250);
 
-	Serial.println("set GC");
-  delay(250);
-	ai = mrb_gc_arena_save(mrb); // see https://github.com/mruby/mruby/blob/master/doc/guides/gc-arena-howto.md
-  delay(250);
-
   show_memory_usage();
 }
 
@@ -120,13 +114,15 @@ void loop() {
   delay(250);
 	mrb_load_irep(mrb, bytecode);
   delay(250);
+
+	/* If there was an error executing mruby, print it out.
+	   Source: https://tyfkda.github.io/blog/2013/09/21/mruby-backtrace.html */
+	if (mrb->exc) {
+		mrb_print_error(mrb);
+ 		mrb->exc = 0;
+	}
+
 	Serial.println("Finished executing Ruby");
-  delay(250);
-	mrb_close(mrb);
-  delay(250);
 
-	Serial.println("Restoring GC");
-	mrb_gc_arena_restore(mrb,ai); // see https://github.com/mruby/mruby/blob/master/doc/guides/gc-arena-howto.md
-
-  delay(250);
+  delay(1000);
 }
