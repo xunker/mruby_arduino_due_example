@@ -17,8 +17,9 @@
 
 # # Will blink the LED on the DUE labeled "L" on and off in 1 second intervals.
 # # Needs the following enabled in config.h:
-# #   MRUBY_ARDUINO_DIGITAL_WRITE
+# #   MRUBY_ARDUINO_DIGITAL_IO
 # #   MRUBY_ARDUINO_DELAY
+# Arduino.pinMode(13, Arduino::OUTPUT)
 # loop do
 #   Arduino.digitalWrite(13, 1)
 #   Arduino.delay(1000)
@@ -62,8 +63,8 @@
 # ----------
 
 
-# # Will read the state of a switch connected to pin #2, and will vary the
-# # the blinking speed depending on the state.
+# # Will read the state of a switch connected between pin #2 and GND, and
+# # and will vary the blinking speed depending on the state of the switch.
 # # Needs the following enabled in config.h:
 # #  MRUBY_ARDUINO_DIGITAL_IO
 # #  MRUBY_ARDUINO_SERIAL_PRINT
@@ -143,6 +144,17 @@
 # ----------
 
 
+# # Calling a C-function defined in blinking.ino. Requires the two lines
+# # in setup() begining with `RClass *infoClass...` to be uncommented.
+# # Does NOT require anything in config.h to be enabled, but DOES require the
+# # Arduino Due to be connected to your computer via the PROGRAMMING port (not
+# # the "native" port).
+# Info.show_memory_usage
+
+
+# ----------
+
+
 # # Using the mruby gem mruby-numeric-ext from core. Mruby must be compiled with
 # # the mruby-numeric-ext included.
 # # Needs the following enabled in config.h:
@@ -152,17 +164,4 @@
 #   Serial.println("#{dec}: #{dec.chr.inspect}")
 #   dec += 1
 #   Arduino.delay(500)
-# end
-
-
-# ----------
-
-
-# # Calling a C-function defined in blinking.ino. Requires the two lines
-# # in setup() begining with `RClass *infoClass...` to be uncommented.
-# # Does NOT require anything in config.h to be enabled, but DOES require the
-# # Arduino Due to be connected to your computer via the PROGRAMMING port (not
-# # the "native" port).
-# loop do
-#   Silly.show_memory_usage
 # end
