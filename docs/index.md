@@ -36,7 +36,7 @@ Note: if you make significant changes to the build config or mrbgems, you should
 
 and then call
 
-`MRUBY_CONFIG=examples/targets/build_config_ArduinoDue.rb ./minirake clean`
+`MRUBY_CONFIG=examples/targets/build_config_ArduinoDue.rb ./minirake`
 
 as normal.
 
