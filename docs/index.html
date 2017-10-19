@@ -1,0 +1,58 @@
+<html>
+<head>
+  <title>mruby Arduino Due Example setup instructions</title>
+</head>
+<body>
+
+<h1 id="mruby-arduino-due-example-setup-instructions">mruby Arduino Due Example setup instructions</h1>
+<h1 id="example-arduino-sketch">Example Arduino Sketch</h1>
+<h2 id="download">Download</h2>
+<p>Clone or download the sketch here: <a href="https://github.com/xunker/mruby_arduino_due_example">https://github.com/xunker/mruby_arduino_due_example</a></p>
+<h1 id="mruby">mruby</h1>
+<h2 id="download-mruby">Download mruby</h2>
+<p>Clone or download <a href="https://github.com/xunker/mruby">https://github.com/xunker/mruby</a></p>
+<p>Use the branch "arduino_due", it is the default branch so you should't need
+to do anything special</p>
+<h2 id="configure-mruby">Configure mruby</h2>
+<p>In the mruby directory, exit the file <code>examples/targets/build_config_ArduinoDue.rb</code>.</p>
+<p>Update the <code>ARDUINO_PATH</code>, <code>BIN_PATH</code>, <code>SAM_PATH</code>, and <code>TARGET_PATH</code> variables
+to match your local system</p>
+<h2 id="build-mruby">build mruby</h2>
+<p>Once the above configuration is complete, you can build mruby with the command</p>
+<p><code>MRUBY_CONFIG=examples/targets/build_config_ArduinoDue.rb ./minirake</code></p>
+<p>Note: if you make significant changes to the build config or mrbgems, you should
+"clean" your project first.  Do that with:</p>
+<p><code>MRUBY_CONFIG=examples/targets/build_config_ArduinoDue.rb ./minirake clean</code></p>
+<p>and then call</p>
+<p><code>MRUBY_CONFIG=examples/targets/build_config_ArduinoDue.rb ./minirake clean</code></p>
+<p>as normal.</p>
+<p>Remember, it never hurts to "clean" between builds.</p>
+<p>If successful, you should see this output or similar:</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>================================================</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Config&nbsp;Name:&nbsp;ArduinoDue</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;Output&nbsp;Directory:&nbsp;build/ArduinoDue</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>&nbsp;&nbsp;&nbsp;&nbsp;Included&nbsp;Gems:</span></span></div><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>================================================</span></span></div></pre><h2 id="compile-mruby-bytecode">compile mruby bytecode</h2>
+<p>Once mruby is built, you can compile mruby to bytecode using this command,
+assuming the "mruby_arduino_due_example" diretory is on the same level as the
+"mruby" directory:</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>bin/mrbc&nbsp;-Bbytecode&nbsp;-o../mruby_arduino_due_example/mruby_arduino_due_example.c&nbsp;-e&nbsp;../mruby_arduino_due_example/mruby_arduino_due_example.rb</span></span></div></pre><p>If succesful, no output will be returned.</p>
+<h1 id="arduino-ide">Arduino IDE</h1>
+<h2 id="download-arduino-ide">Download Arduino IDE</h2>
+<p>You can download the Arduino IDE here: <a href="https://www.arduino.cc/en/Main/Software">https://www.arduino.cc/en/Main/Software</a></p>
+<h2 id="configure-the-arduino-ide-for-due-and-mruby">Configure the Arduino IDE for Due and mruby</h2>
+<h3 id="add-arduino-due-support-to-ide">Add Arduino Due support to IDE</h3>
+<p>Tools Menu -&gt;
+  Board -&gt;
+    Boards Manager</p>
+<p>Search for "Arduino SAM Boards (32-bits ARM Cortex-M3)" and install it.</p>
+<h3 id="add-mruby-support-to-arduino-ide">Add mruby support to Arduino IDE</h3>
+<p>Find and open the arduino <code>platform.txt</code> file. On Macos, it is located at</p>
+<p><code>~/Library/Arduino15/packages/arduino/hardware/sam/1.6.11/platform.txt</code></p>
+<p>Add:</p>
+<p><code>-I/Users/mnielsen/work/mruby/include</code> to the end of the "compiler.c.flags" line.
+<code>-I/Users/mnielsen/work/mruby/include</code> to the end of the "compiler.cpp.flags" line.</p>
+<p>In he section that begins with "## Combine gc-sections, archives, and objects",
+add:</p>
+<p><code>"-L/&lt;full_path_to_mruby_dir&gt;/mruby/build/ArduinoDue/lib" -lmruby -lm -lstdc++</code></p>
+<p>...right after the last "-gcc" on the line.</p>
+<p>For example, my line looks like this after the addition:</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>recipe.c.combine.pattern="{compiler.path}{compiler.c.elf.cmd}"&nbsp;-mcpu={build.mcu}&nbsp;-mthumb&nbsp;{compiler.c.elf.flags}&nbsp;"-T{build.variant.path}/{build.ldscript}"&nbsp;"-Wl,-Map,{build.path}/{build.project_name}.map"&nbsp;{compiler.c.elf.extra_flags}&nbsp;-o&nbsp;"{build.path}/{build.project_name}.elf"&nbsp;"-L{build.path}"&nbsp;-Wl,--cref&nbsp;-Wl,--check-sections&nbsp;-Wl,--gc-sections&nbsp;-Wl,--entry=Reset_Handler&nbsp;-Wl,--unresolved-symbols=report-all&nbsp;-Wl,--warn-common&nbsp;-Wl,--warn-section-align&nbsp;-Wl,--start-group&nbsp;{compiler.combine.flags}&nbsp;{object_files}&nbsp;"{build.variant.path}/{build.variant_system_lib}"&nbsp;"{build.path}/{archive_file}"&nbsp;-Wl,--end-group&nbsp;-lm&nbsp;-gcc&nbsp;"-L/Users/mnielsen/work/mruby/build/ArduinoDue/lib"&nbsp;-lmruby&nbsp;-lm&nbsp;-lstdc++</span></span></div></pre>
+
+</body>
